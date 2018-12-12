@@ -15,7 +15,7 @@
 	
 	<servlet>
 		<servlet-name>action</servlet-name>
-		<servlet-class>com.multicampus.controller.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
