@@ -38,7 +38,27 @@ public class DispatcherServlet extends HttpServlet {
 		
 		// 2. 요청 path에 따라 로직을 분기처리한다.
 		if(path.equals("/login.do")) {
+			System.out.println("로그인 기능 처리");
+			
+			// 1. 사용자 입력정보 추출
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");	
 
+			// 2. DB 연동 처리
+			UserVO vo = new UserVO();
+			vo.setId(id);
+			vo.setPassword(password);
+			
+			UserDAO userDAO = new UserDAO();
+			UserVO user = userDAO.getUser(vo);
+			
+			// 3. 화면 네비게이션
+			if(user != null) {
+				response.sendRedirect("getBoardList.do");
+			} else {
+				response.sendRedirect("login.jsp");
+			}
+			
 		} else if(path.equals("/insertBoard.do")) {
 			System.out.println("글 등록 기능 처리");
 			
